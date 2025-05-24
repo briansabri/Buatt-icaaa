@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ICAAA Will You Be My Girlfriend?</title>
+  <title>Icaaa Will You Be My Girlfriend?</title>
   <style>
     body {
       background-color: pink;
@@ -82,24 +82,26 @@
   </style>
 </head>
 <body>
-
-  <h1>ICAAAA, will you be my girlfriend?</h1>
-  <button id="yes">Aku MAUUUU</button>
+  <h1>Icaaa, will you be my girlfriend?</h1>
+  <button id="yes">Aku Mau</button>
   <button id="no">MOH AKU MOH</button>
 
-  <!-- Musik -->
-  <audio id="bg-music" loop>
-    <source src="https://cdn.bazeafrika.com/wp-content/uploads/2025/05/Connie-Francis---Pretty-Little-Baby-Bazeafrika.com.mp3" type="audio/mpeg" />
+  <!-- Musik Connie Francis -->
+  <audio id="bgm" autoplay loop>
+    <source src="https://cdn.bazeafrika.com/wp-content/uploads/2025/05/Connie-Francis---Pretty-Little-Baby-Bazeafrika.com.mp3" type="audio/mpeg">
   </audio>
 
   <script>
     const yesBtn = document.getElementById('yes');
     const noBtn = document.getElementById('no');
-    const music = document.getElementById('bg-music');
+    const music = document.getElementById('bgm');
 
     yesBtn.addEventListener('click', () => {
       yesBtn.innerText = 'Yeeeyy!!';
-      music.play(); // Play music on button click
+
+      // Simpan waktu musik ke sessionStorage
+      sessionStorage.setItem("playTime", music.currentTime);
+
       setTimeout(() => {
         window.location.href = 'page2.html';
       }, 1500);
@@ -121,10 +123,12 @@
       setTimeout(() => heart.remove(), 3000);
     }
 
+    // Hati muncul saat mouse gerak
     document.addEventListener('mousemove', function(e) {
       spawnHeart(e.pageX, e.pageY);
     });
 
+    // Hati muncul saat layar ditap
     document.addEventListener('touchstart', function(e) {
       for (let i = 0; i < e.touches.length; i++) {
         spawnHeart(e.touches[i].pageX, e.touches[i].pageY);
