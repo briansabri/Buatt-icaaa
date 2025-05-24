@@ -19,5 +19,20 @@
 <body>
   <h1>Terimakasihhh yaaaaa icaaaa Love youu</h1>
   <p>~SABRI</p>
+
+  <!-- Musik tetap menyala -->
+  <audio id="bgm" autoplay loop>
+    <source src="https://cdn.bazeafrika.com/wp-content/uploads/2025/05/Connie-Francis---Pretty-Little-Baby-Bazeafrika.com.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const music = document.getElementById('bgm');
+
+    // Ambil waktu simpanan dari halaman sebelumnya
+    const savedTime = sessionStorage.getItem("playTime");
+    if (savedTime) {
+      music.currentTime = parseFloat(savedTime);
+    }
+  </script>
 </body>
 </html>
