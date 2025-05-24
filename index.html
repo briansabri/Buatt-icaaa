@@ -82,26 +82,29 @@
   </style>
 </head>
 <body>
+
   <h1>Icaaa, will you be my girlfriend?</h1>
   <button id="yes">Aku Mau</button>
   <button id="no">MOH AKU MOH</button>
 
-  <!-- Musik Pretty Little Baby Connie Francis -->
-  <audio autoplay loop>
+  <!-- Musik -->
+  <audio id="bg-music" loop>
     <source src="https://cdn.bazeafrika.com/wp-content/uploads/2025/05/Connie-Francis---Pretty-Little-Baby-Bazeafrika.com.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
   </audio>
 
   <script>
     const yesBtn = document.getElementById('yes');
+    const noBtn = document.getElementById('no');
+    const music = document.getElementById('bg-music');
+
     yesBtn.addEventListener('click', () => {
       yesBtn.innerText = 'Yeeeyy!!';
+      music.play(); // Play music on button click
       setTimeout(() => {
         window.location.href = 'page2.html';
       }, 1500);
     });
 
-    const noBtn = document.getElementById('no');
     noBtn.addEventListener('mouseover', () => {
       const i = Math.floor(Math.random() * (window.innerWidth - 100));
       const j = Math.floor(Math.random() * (window.innerHeight - 50));
@@ -118,12 +121,10 @@
       setTimeout(() => heart.remove(), 3000);
     }
 
-    // Mouse gerak
     document.addEventListener('mousemove', function(e) {
       spawnHeart(e.pageX, e.pageY);
     });
 
-    // Tap layar (HP)
     document.addEventListener('touchstart', function(e) {
       for (let i = 0; i < e.touches.length; i++) {
         spawnHeart(e.touches[i].pageX, e.touches[i].pageY);
