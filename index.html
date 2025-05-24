@@ -1,11 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Icaaa Will You Be My Girlfriend?</title>
+  <style>
+    body {
+      background-color: pink;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      text-align: center;
+      padding: 50px;
+      overflow: hidden;
+    }
 
+    h1 {
+      color: white;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 5px hotpink;
+    }
+
+    button {
+      font-size: 1.5em;
+      margin: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    #yes {
+      background-color: #ff69b4;
+      color: white;
+    }
+
+    #no {
+      background-color: #ff69b4;
+      color: white;
+      position: absolute;
+    }
+
+    .heart {
+      position: fixed;
+      width: 15px;
+      height: 15px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 3s linear infinite;
+      pointer-events: none;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -7.5px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: -7.5px;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-600px) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
 <body>
-
   <h1>Icaaa, will you be my girlfriend?</h1>
   <button id="yes">Aku Mau</button>
   <button id="no">MOH AKU MOH</button>
 
-  <!-- SCRIPT: tombol yes & no -->
   <script>
     const yesBtn = document.getElementById('yes');
     yesBtn.addEventListener('click', () => {
@@ -23,15 +103,26 @@
       noBtn.style.top = j + 'px';
     });
 
-    // SCRIPT: animasi hati
-    document.addEventListener('mousemove', function(e) {
+    function spawnHeart(x, y) {
       const heart = document.createElement('div');
       heart.className = 'heart';
-      heart.style.left = e.pageX + 'px';
-      heart.style.top = e.pageY + 'px';
+      heart.style.left = x + 'px';
+      heart.style.top = y + 'px';
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 3000);
+    }
+
+    // Mouse gerak
+    document.addEventListener('mousemove', function(e) {
+      spawnHeart(e.pageX, e.pageY);
+    });
+
+    // Tap layar (HP)
+    document.addEventListener('touchstart', function(e) {
+      for (let i = 0; i < e.touches.length; i++) {
+        spawnHeart(e.touches[i].pageX, e.touches[i].pageY);
+      }
     });
   </script>
-
 </body>
+</html>
